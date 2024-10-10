@@ -1,8 +1,8 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { getList } from "./api";
 
-export const useListQuery = () => {
-  return useInfiniteQuery({
+export const useListQuery = () =>
+  useInfiniteQuery({
     queryKey: ["list"],
     queryFn: ({ pageParam = 1 }) => getList({ page: pageParam }),
     getNextPageParam: (lastPage, allPages) => {
@@ -14,4 +14,3 @@ export const useListQuery = () => {
     },
     initialPageParam: 1,
   });
-};

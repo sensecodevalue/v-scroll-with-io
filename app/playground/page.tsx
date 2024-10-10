@@ -1,8 +1,11 @@
 "use client";
 
+import { useListQuery } from "@/api/list/query";
 import { CardContainer, CardContent, CardImageArea } from "@/components/Card";
 
 export default function Playground() {
+  const { data } = useListQuery();
+
   return (
     <div className="w-[100%] grid grid-cols-2">
       <CardContainer>

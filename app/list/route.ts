@@ -2,8 +2,8 @@ export const dynamic = "force-dynamic";
 
 const makePageData = (page: number, limit: number) => {
   return new Array(limit).fill(0).map((_, i) => ({
-    name: `Item ${page * limit + i}`,
-    id: page * limit + i,
+    name: `Item ${(page - 1) * limit + i}`,
+    id: (page - 1) * limit + i,
     url: "",
   }));
 };
