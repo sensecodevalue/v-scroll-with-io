@@ -1,5 +1,11 @@
-import { PropsWithChildren } from "react";
+interface CardContentProps {
+  name: string;
+}
 
-export default function CardContent({ children }: PropsWithChildren) {
-  return <div className="">{children}</div>;
+export default function CardContent({ name }: CardContentProps) {
+  return (
+    <div className="h-[100px] p-2">
+      <span>{name}</span>
+    </div>
+  );
 }
