@@ -1,7 +1,7 @@
-import { PropsWithChildren } from "react";
+import { ComponentPropsWithoutRef } from "react";
 
 // // 300x360
 
-export default function CardContainer({ children }: PropsWithChildren) {
-  return <div className="w-[100%] pb-4">{children}</div>;
+export default function CardContainer(props: ComponentPropsWithoutRef<"div">) {
+  return <div className="w-[100%]" {...props} />;
 }
