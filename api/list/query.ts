@@ -8,7 +8,7 @@ export const useListQuery = () =>
     getNextPageParam: (lastPage, allPages) => {
       const nextPage = allPages.length + 1;
 
-      return lastPage?.length === 0 || lastPage?.length < 30
+      return lastPage.list?.length === 0 || lastPage.list?.length < 30
         ? undefined
         : nextPage;
     },

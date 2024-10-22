@@ -1,0 +1,9 @@
+{
+  "pagination": {
+    "page": 2,
+    "size": 30,
+    "totalCount": 112561,
+    "hasNext": true,
+    "totalPages": 3753
+  }
+}

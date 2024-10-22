@@ -3,13 +3,14 @@
 import { useListQuery } from "@/api/list/query";
 import { CardContainer, CardContent, CardImageArea } from "@/components/Card";
 import { useVirtualizer } from "@tanstack/react-virtual";
+import Image from "next/image";
 import { useEffect, useRef } from "react";
 
 export default function Playground() {
   const { data, status, hasNextPage, fetchNextPage, isFetchingNextPage } =
     useListQuery();
 
-  const allRows = data ? data.pages.flatMap((d) => d) : [];
+  const allRows = data ? data.pages.flatMap((d) => d.list) : [];
   // 한칸에 두개씩 보여주려면 2개의 묶음으로 새로운 리스트를 만들면됨.
   // 또는 계산할때 반만돌리고 랜더함수에서 수식을 통해 보여주는 형태로해도 될듯 <- 이게 더 좋아 보임
   const parentRef = useRef<HTMLDivElement>(null);
@@ -17,7 +18,7 @@ export default function Playground() {
   const rowVirtualizer = useVirtualizer({
     count: hasNextPage ? allRows.length + 1 : allRows.length,
     getScrollElement: () => parentRef.current,
-    estimateSize: () => (parentRef.current?.clientWidth ?? 1) * 0.6, // 한 ITEM 5:3으로 계산하면 높이가 맞음
+    estimateSize: () => (parentRef.current?.clientWidth ?? 600) * 0.6, // 한 ITEM 5:3으로 계산하면 높이가 맞음
     overscan: 5,
   });
 
@@ -76,7 +77,6 @@ export default function Playground() {
                     transform: `translateY(${virtualRow.start}px)`,
                   }}
                 >
-                  {/* <CardImageArea></CardImageArea> */}
                   {isLoaderRow ? (
                     hasNextPage ? (
                       "Loading more..."
@@ -84,7 +84,17 @@ export default function Playground() {
                       "Noting"
                     )
                   ) : (
-                    <CardContent name={`${post.name}`} />
+                    <>
+                      <CardImageArea>
+                        <Image
+                          src={post.thumbnail}
+                          alt="post.name"
+                          fill
+                          objectFit="contain"
+                        />
+                      </CardImageArea>
+                      <CardContent name={`${post.name}`} />
+                    </>
                   )}
                 </CardContainer>
               );
