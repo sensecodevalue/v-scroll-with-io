@@ -2,7 +2,9 @@ import { ky } from "./ky";
 
 const instance = ky.create({
   prefixUrl: "http://localhost:3000",
-  headers: {},
+  headers: {
+    "Content-Type": "application/json",
+  },
 });
 
 export const httpInstance = {

@@ -30,9 +30,5 @@ export async function GET(req: Request) {
 
   const data: TypeResponse = makeGoodListWithMeta(Number(page), Number(limit));
 
-  return new Response(JSON.stringify(data), {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
+  return new Response(JSON.stringify(data));
 }
