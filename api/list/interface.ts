@@ -1,8 +1,3 @@
-export interface TypeList {
-  meta: TypeListMeta;
-  list: TypeGood[];
-}
-
 export interface TypeGood {
   id: number;
   name: string;
@@ -18,3 +13,8 @@ export interface TypeListMeta {
   hasNext: boolean;
   totalPage: number;
 }
+
+export type WithListMeta<T> = {
+  list: T[];
+  meta: TypeListMeta;
+};
